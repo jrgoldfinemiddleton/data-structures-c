@@ -18,25 +18,19 @@ struct stack
 };
 
 
-// aliases
-typedef struct stack Stack;
-typedef struct stack_node Node;
-
-
 // Stack Node constructor
 
-Node*           make_node(int val);
+struct stack_node*      make_node(int val);
 
 
 // API
 
-Stack*          make_stack();
-void            delete_stack(Stack* s);
-void            push(Stack* s, int val);
-int             pop(Stack* s);
-int             top(Stack* s);
-bool            is_empty(Stack* s);
-unsigned int    size(Stack* s);
-
+struct stack*           make_stack();
+void                    delete_stack(struct stack* s);
+void                    push(struct stack* s, int val);
+int                     pop(struct stack* s);
+int                     top(struct stack* s);
+bool                    is_empty(struct stack* s);
+unsigned int            size(struct stack* s);
 
 #endif /* STACK_H */

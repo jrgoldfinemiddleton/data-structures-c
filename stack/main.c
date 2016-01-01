@@ -6,8 +6,8 @@
 /* Test driver */
 int main(void)
 {
-    Stack *s = make_stack();
-    Node *n;
+    struct stack *s = make_stack();
+    struct stack_node *n;
     unsigned int pos = 0;
 
     // print the size of new stack
