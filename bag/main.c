@@ -2,8 +2,9 @@
 
 #include <stdio.h>
 
-
-/* Test driver */
+/*
+ * Test driver
+ */
 int main(void)
 {
     struct bag *b = make_bag();

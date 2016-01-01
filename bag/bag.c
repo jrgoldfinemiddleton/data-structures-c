@@ -2,8 +2,9 @@
 
 #include <stdlib.h>
 
-// struct bag struct bag_node constructor
-
+/* 
+ * Constructs a bag node.
+ */
 struct bag_node *make_node(int val)
 {
     struct bag_node *n = (struct bag_node*) malloc(sizeof(struct bag_node));
@@ -14,9 +15,11 @@ struct bag_node *make_node(int val)
 }
 
 
-// API
+// Bag API
 
-/* Constructs an empty bag on the heap. */
+/*
+ * Constructs an empty bag on the heap.
+ */
 struct bag *make_bag()
 {
     struct bag *b = (struct bag*) malloc(sizeof(struct bag));
@@ -27,7 +30,9 @@ struct bag *make_bag()
 }
 
 
-/* Deallocates the heap memory used by the bag and its nodes. */
+/*
+ * Deallocates the heap memory used by the bag and its nodes.
+ */
 void delete_bag(struct bag *b)
 {
     struct bag_node *n = b->top;
@@ -39,12 +44,13 @@ void delete_bag(struct bag *b)
         n = temp;
     }
 
-    // deallocate bag
     free(b);
 }
 
 
-/* Adds a new item to the bag. */
+/*
+ * Adds a new item to the bag.
+ */
 void add(struct bag *b, int val)
 {
     struct bag_node *new_top = make_node(val);
@@ -54,14 +60,18 @@ void add(struct bag *b, int val)
 }
 
 
-/* Returns true if the bag has no items, false otherwise. */
+/*
+ * Returns true if the bag has no items, false otherwise.
+ */
 bool is_empty(struct bag *b)
 {
     return size(b) == 0U;
 }
 
 
-/* Returns the number of items in the bag. */
+/* 
+ * Returns the number of items in the bag.
+ */
 unsigned int size(struct bag *b)
 {
     return b->sz;

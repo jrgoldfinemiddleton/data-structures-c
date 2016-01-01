@@ -3,7 +3,6 @@
 
 #include <stdbool.h>
 
-
 // Stack ADT
 
 struct stack
@@ -17,11 +16,7 @@ struct stack
     unsigned int sz;
 };
 
-
-// Stack Node constructor
-
 struct stack_node       *make_node(int val);
-
 
 // API
 

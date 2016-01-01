@@ -3,8 +3,9 @@
 #include <limits.h>
 #include <stdlib.h>
 
-// Stack Node constructor
-
+/*
+ * Constructs a new node.
+ */
 struct stack_node *make_node(int val)
 {
     struct stack_node *n;
@@ -16,9 +17,11 @@ struct stack_node *make_node(int val)
 }
 
 
-// API
+// Stack API
 
-/* Constructs an empty stack on the heap. */
+/*
+ * Constructs an empty stack on the heap.
+ */
 struct stack *make_stack()
 {
     struct stack *s = (struct stack*) malloc(sizeof(struct stack));
@@ -29,7 +32,9 @@ struct stack *make_stack()
 }
 
 
-/* Deallocates the heap memory used by the stack and its nodes. */
+/*
+ * Deallocates the heap memory used by the stack and its nodes.
+ */
 void delete_stack(struct stack *s)
 {
     struct stack_node *n = s->top;
@@ -41,12 +46,13 @@ void delete_stack(struct stack *s)
         n = temp;
     }
 
-    // deallocate stack
     free(s);
 }
 
 
-/* Adds a new item to the top of the stack. */
+/*
+ * Adds a new item to the top of the stack.
+ */
 void push(struct stack *s, int val)
 {
     struct stack_node *new_top = make_node(val);
@@ -56,8 +62,10 @@ void push(struct stack *s, int val)
 }
 
 
-/* Removes the top item from the stack and returns it.  If the stack
- * is empty, returns INT_MIN. */
+/*
+ * Removes the top item from the stack and returns it.  If the stack
+ * is empty, returns INT_MIN.
+ */
 int pop(struct stack *s)
 {
     if (s->top == NULL) return INT_MIN;
@@ -70,8 +78,10 @@ int pop(struct stack *s)
 }
 
 
-/* Returns the top item from the stack.  If the stack is empty, returns
- * INT_MIN. */
+/*
+ * Returns the top item from the stack.  If the stack is empty, returns
+ * INT_MIN.
+ */
 int top(struct stack *s)
 {
     if (s->top == NULL) return INT_MIN;
@@ -80,14 +90,18 @@ int top(struct stack *s)
 }
 
 
-/* Returns true if the stack has no items, false otherwise. */
+/*
+ * Returns true if the stack has no items, false otherwise.
+ */
 bool is_empty(struct stack *s)
 {
     return size(s) == 0U;
 }
 
 
-/* Returns the number of items on the stack. */
+/*
+ * Returns the number of items on the stack.
+ */
 unsigned int size(struct stack *s)
 {
     return s->sz;
