@@ -20,17 +20,17 @@ struct stack
 
 // Stack Node constructor
 
-struct stack_node*      make_node(int val);
+struct stack_node       *make_node(int val);
 
 
 // API
 
-struct stack*           make_stack();
-void                    delete_stack(struct stack* s);
-void                    push(struct stack* s, int val);
-int                     pop(struct stack* s);
-int                     top(struct stack* s);
-bool                    is_empty(struct stack* s);
-unsigned int            size(struct stack* s);
+struct stack            *make_stack();
+void                    delete_stack(struct stack *s);
+void                    push(struct stack *s, int val);
+int                     pop(struct stack *s);
+int                     top(struct stack *s);
+bool                    is_empty(struct stack *s);
+unsigned int            size(struct stack *s);
 
 #endif /* STACK_H */

@@ -9,6 +9,7 @@ int main(void)
     struct stack *s = make_stack();
     struct stack_node *n;
     unsigned int pos = 0;
+    int i;
 
     // print the size of new stack
     printf("size: %2u\n", size(s));
@@ -17,8 +18,7 @@ int main(void)
     printf("trying to pop empty stack: %i\n", pop(s));
 
     // print size after adding each of 10 items
-    for (int i = 0; i != 10; ++i)
-    {
+    for (i = 0; i != 10; ++i) {
         push(s, i);
         printf("size: %2u\n", size(s));
     }
@@ -28,8 +28,7 @@ int main(void)
 
     // print all items on stack
     n = s->top;
-    while(n != NULL)
-    {
+    while (n != NULL) {
         printf("item %2u: %2i\n", ++pos, n->item);
         n = n->next;
     }
