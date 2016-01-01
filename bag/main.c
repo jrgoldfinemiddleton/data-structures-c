@@ -6,8 +6,8 @@
 /* Test driver */
 int main(void)
 {
-    Bag *b = make_bag();
-    Node *n;
+    struct bag *b = make_bag();
+    struct bag_node *n;
     unsigned int pos = 0;
 
     // print the size of new bag

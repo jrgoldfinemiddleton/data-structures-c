@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 
-// Bag ADT
+// struct bag ADT
 
 struct bag
 {
@@ -18,23 +18,18 @@ struct bag
 };
 
 
-// aliases
-typedef struct bag Bag;
-typedef struct bag_node Node;
+// struct bag struct bag_node constructor
 
-
-// Bag Node constructor
-
-Node*           make_node(int val);
+struct bag_node*    make_node(int val);
 
 
 // API
 
-Bag*            make_bag();
-void            delete_bag(Bag* b);
-void            add(Bag* b, int val);
-bool            is_empty(Bag* b);
-unsigned int    size(Bag* b);
+struct bag*         make_bag();
+void                delete_bag(struct bag* b);
+void                add(struct bag* b, int val);
+bool                is_empty(struct bag* b);
+unsigned int        size(struct bag* b);
 
 
 #endif /* BAG_H */
