@@ -7,7 +7,9 @@
  */
 struct bag_node *make_node(int val)
 {
-    struct bag_node *n = (struct bag_node*) malloc(sizeof(struct bag_node));
+    struct bag_node *n;
+    
+    n = (struct bag_node*) malloc(sizeof(struct bag_node));
     n->item = val;
     n->next = NULL;
 
@@ -22,7 +24,9 @@ struct bag_node *make_node(int val)
  */
 struct bag *make_bag()
 {
-    struct bag *b = (struct bag*) malloc(sizeof(struct bag));
+    struct bag *b;
+
+    b = (struct bag*) malloc(sizeof(struct bag));
     b->top = NULL;
     b->sz = 0;
 
@@ -35,13 +39,16 @@ struct bag *make_bag()
  */
 void delete_bag(struct bag *b)
 {
-    struct bag_node *n = b->top;
+    struct bag_node *n;
+    struct bag_node *tmp;
+    
+    n = b->top; /* current node */
 
     // deallocate each node
     while (n != NULL) {
-        struct bag_node *temp = n->next;
+        tmp = n->next;
         free(n);
-        n = temp;
+        n = tmp;
     }
 
     free(b);
@@ -53,7 +60,9 @@ void delete_bag(struct bag *b)
  */
 void add(struct bag *b, int val)
 {
-    struct bag_node *new_top = make_node(val);
+    struct bag_node *new_top;
+    
+    new_top = make_node(val); /* new node */
     new_top->next = b->top;
     b->top = new_top;
     ++(b->sz);
