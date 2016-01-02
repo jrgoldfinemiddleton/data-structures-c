@@ -9,6 +9,7 @@
 struct stack_node *make_node(int val)
 {
     struct stack_node *n;
+
     n = (struct stack_node*) malloc(sizeof(struct stack_node));
     n->item = val;
     n->next = NULL;
@@ -24,7 +25,9 @@ struct stack_node *make_node(int val)
  */
 struct stack *make_stack()
 {
-    struct stack *s = (struct stack*) malloc(sizeof(struct stack));
+    struct stack *s;
+
+    s = (struct stack*) malloc(sizeof(struct stack));
     s->top = NULL;
     s->sz = 0;
 
@@ -37,13 +40,16 @@ struct stack *make_stack()
  */
 void delete_stack(struct stack *s)
 {
-    struct stack_node *n = s->top;
+    struct stack_node *n;
+    struct stack_node *tmp;
+
+    n = s->top; /* current node */
 
     // deallocate each node
     while (n != NULL) {
-        struct stack_node *temp = n->next;
+        tmp = n->next;
         free(n);
-        n = temp;
+        n = tmp;
     }
 
     free(s);
@@ -55,7 +61,9 @@ void delete_stack(struct stack *s)
  */
 void push(struct stack *s, int val)
 {
-    struct stack_node *new_top = make_node(val);
+    struct stack_node *new_top;
+    
+    new_top = make_node(val); /* new node */
     new_top->next = s->top;
     s->top = new_top;
     ++(s->sz);
@@ -68,10 +76,16 @@ void push(struct stack *s, int val)
  */
 int pop(struct stack *s)
 {
+    int item;
+    struct stack_node *old_top;
+
     if (s->top == NULL) return INT_MIN;
 
-    int item = s->top->item;
-    s->top = s->top->next;
+    old_top = s->top;
+    item = old_top->item;    /* store item */
+
+    s->top = old_top->next;
+    free(old_top);
     --(s->sz);
 
     return item;

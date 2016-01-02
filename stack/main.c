@@ -7,10 +7,12 @@
  */
 int main(void)
 {
-    struct stack *s = make_stack();
+    struct stack *s;
     struct stack_node *n;
-    unsigned int pos = 0;
+    unsigned int pos;
     int i;
+
+    s = make_stack();   /* stack to play with */
 
     // print the size of new stack
     printf("size: %2u\n", size(s));
@@ -29,6 +31,7 @@ int main(void)
 
     // print all items on stack
     n = s->top;
+    pos = 0;
     while (n != NULL) {
         printf("item %2u: %2i\n", ++pos, n->item);
         n = n->next;
