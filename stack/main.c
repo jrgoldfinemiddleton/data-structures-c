@@ -1,57 +1,76 @@
 #include "stack.h"
 
+#include <assert.h>
+#include <limits.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-/*
- * Test driver
- */
 int main(void)
 {
-    struct stack *s;
     struct stack_node *n;
-    unsigned int pos;
-    int i;
+    struct stack      *s;
+    int               i;
+    int               item;
 
-    s = make_stack();   /* stack to play with */
+    int vals[10] = { 2, 0, -1, 5, 6, 2, 7, 9, 100, -40 };
 
-    // print the size of new stack
-    printf("size: %2u\n", size(s));
-    printf("is empty? %i\n", is_empty(s));
+    /* test make_node() */
+    n = NULL;
+    n = make_node(vals[2]);
 
-    printf("trying to pop empty stack: %i\n", pop(s));
+    assert(n != NULL);
+    assert(n->item == vals[2]);
+    assert(n->next == NULL);
 
-    // print size after adding each of 10 items
-    for (i = 0; i != 10; ++i) {
-        push(s, i);
-        printf("size: %2u\n", size(s));
-    }
-
-    printf("is empty? %i\n", is_empty(s));
-    printf("\n");
-
-    // print all items on stack
-    n = s->top;
-    pos = 0;
-    while (n != NULL) {
-        printf("item %2u: %2i\n", ++pos, n->item);
-        n = n->next;
-    }
-
-    printf("top: %i\n", top(s));
-    printf("popping top: %i\n", pop(s));
-    printf("size: %u\n", size(s));
-    printf("new top: %i\n", top(s));
-
-    printf("pushing 5...\n");
-    push(s, 5);
-    printf("size: %u\n", size(s));
-    printf("new top: %i\n", top(s));
-
-    pos = 0;
+    free(n);
     n = NULL;
 
-    // deallocate the memory used by the stack and nodes
+    /* test make_stack() */
+    s = NULL;
+    s = make_stack();
+
+    assert(s != NULL);
+
+    /* test is_empty(), size(), pop(), push(), and top() */
+    assert(is_empty(s));
+    assert(size(s) == 0);
+    assert(pop(s) == INT_MIN);
+
+    push(s, vals[0]);
+    assert(!is_empty(s));
+    assert(size(s) == 1);
+
+    item = top(s);
+    assert(size(s) == 1);
+    assert(item == vals[0]);
+
+    item = pop(s);
+    assert(size(s) == 0);
+    assert(item == vals[0]);
+
+    n = s->top;
+    assert(n == NULL);
+
+    push(s, vals[1]);
+    assert(!is_empty(s));
+    assert(size(s) == 1);
+
+    n = s->top;
+    assert(n != NULL);
+    assert(n->item == vals[1]);
+    assert(n->next == NULL);
+
+    for (i = 2; i != 10; ++i)
+        push(s, vals[i]);
+
+    assert(size(s) == 9);
+
     delete_stack(s);
+
+    puts("OK");
 
     return 0;
 }
+
+
+
